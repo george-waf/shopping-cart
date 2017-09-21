@@ -7,5 +7,4 @@ install:
 after_success:
   coveralls
   
-script: 
-  make test
+script: pytest
