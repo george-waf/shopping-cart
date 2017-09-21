@@ -1,31 +1,21 @@
+users=[]
+shopping_list=[]
 class User(object):
-    users = []
+    
+    def __init__(self,firstname,lastname,username,email,password):
+        
+        self.first_name=firstname
+        self.last_name=lastname
+        self.username=username
+        self.email=email
+        self.password=password
 
-    def register(self,firstname,lastname,email,username,password):
-        self.users.append([firstname,lastname,email,username,password])
-   
-    def userlist(self):
-        for i in self.users:
-            print (i)
-            
-    def login(self, email, password):
-        pass
-
-class ShoppingCart(object):
-
-    def __init__(self):
-        self.shoppinglist = []
-
-    def newshoppinglist(self, listname, quantity,idf):
-        self.shoppinglist.append([listname,quantity,idf])
-
-    def deletellist(self, listname, quantity,idf):
-        self.shoppinglist.remove([listname, quantity,idf])
-         
-class ShoppingListItem(ShoppingCart):
-
-    def __init__(self):
-        self.listname = listname
-
-    def description(self):
-        pass
+class Shoppinglist(object):
+    def __init__(self,shoppinglist,description,items,status,dateadded):
+        
+        self.shoppinglist=shoppinglist
+        self.description=description
+        self.items=items
+        self.status=status
+        self.dateadded=dateadded
+        
