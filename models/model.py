@@ -16,6 +16,12 @@ class Shoppinglist(object):
         self.shoppinglist=shoppinglist
         self.description=description
         self.items=items
-        self.status=status
+        self.status='new'
         self.dateadded=dateadded
+        
+class Shoppinglistitems(Shoppinglist):
+    def _init__(self,name,status='new'):
+        self.shoppinglist = shoppinglist
+        self.status = status        
+        
         
