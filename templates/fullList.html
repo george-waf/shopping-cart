@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="page displaying all the bucketlists created">
-    <meta name="author" content="George Wafula">
+{% extends 'base.html' %}
 
-    <title>Shopping Cart</title>
-	
-	<!-- CSS --> 
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  </head>
-
-  <body>
-      <div> 
-      <nav class="navbar navbar-inverse navbar-fixed-top">  
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand"><i class="fa fa-shopping-cart"></i> Shopping Cart </a>
-      </div>
-       
-      </nav>
+{% block body %}
 
       <div style="padding: 45px 45px 0px 45px;">
 
@@ -35,72 +9,17 @@
             <h1><i class="fa fa-file-text"></i><small> All My Shopping Lists</small></h1>          
             <div class="alert alert-success alert-dismissable" align="center">
              My Shopping Lists <i class="fa fa-smile-o fa-1x "></i> ! 
-			</div>
+			      </div>
           </div>
        
-		  <a href="/newshoppinglist"><div class="col-lg-3">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-folder-open fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">                    
-                    <p class="announcement-text"> New Shopping List </p>
-                  </div>
-                </div>
-              </div>
-              </div>
-		   </div></a>
-		  <a href="/dashboard"><div class="col-lg-3">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-home fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">                    
-                    <p class="announcement-text"> Home </p>
-                  </div>
-                </div>
-              </div>
-              </div>
-          </div></a>
-          <a href="/editlist"><div class="col-lg-3">
-            <div class="panel panel-warning">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-pencil fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">                    
-                    <p class="announcement-text"> Modify a List </p>
-                  </div>
-                </div>
-              </div>
-              </div>
-          </div></a>
-		<a href="/deletelist"><div class="col-lg-3">
-            <div class="panel panel-danger">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-trash-o fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">                    
-                    <p class="announcement-text"> Delete a List </p>
-                  </div>
-                </div>
-              </div>
-              </div>
-          </div></a>   
+		  {% include 'includes/_menu3.html' %}
            
-	    </div><!-- /.row -->
+	      </div><!-- /.row -->
         <div class="row">
-			<div class="col-md-10 col-lg-offset-1">  
-	         <div id="welcome" class="panel panel-success">
+			  <div class="col-md-10 col-lg-offset-1">  
+	       <div id="welcome" class="panel panel-success">
 			   <div class="panel-heading">
-				  <h3 class="panel-title">My Shopping Lists </h3>
+				 <h3 class="panel-title">My Shopping Lists </h3>
 			   </div>
 			   
 			    <div class="panel-body">
@@ -111,25 +30,36 @@
                                             <th width="17%">Shopping List Name</th>
                                             <th width="19%">Description</th>
                                             <th width="13%">Status</th>
+                                            <th width="13%">Items</th>
                                             <th width="13%">Date added </th>
 											                      <th width="20%">Action </th>
                                         </tr>
+                                        
                                     </thead>
-                                    <tbody>                                      
-				</tbody>          
+                                    <tbody>  
+                          {% for item in  list_items %}
+                            <tr>
+                              <td>{{ item.shoppinglist }}</td>
+                              <td>{{ item.description }}</td>  
+                              <td>{{ item.status }}</td> 
+                              <td>{{ item.items }}</td> 
+                              <td>{{ item.dateadded }}</td>
+                              <td>
+<input type="button" id="edit_button" value="Edit" class="edit" onclick="edit_row()">
+<input type="button" name="btn1" value="Delete" onclick="shopping_list.remove(slist)">
+</td>
+                            </tr>                                      
+                          {% endfor %}                                     
+								                  </tbody>          
                               </table>
                             </div>
 		        </div>
-		 	</div>
-		   </div>
-        </div><!-- /.row -->
+		 	    </div>
+		      </div>
+          </div><!-- /.row -->
 			
    	  </div><!-- /#page-wrapper -->
-    </div><!-- /#wrapper -->
-   
-  </body>
-</html>
-
+ {% endblock %}  
                     
 						
 					

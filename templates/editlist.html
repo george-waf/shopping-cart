@@ -1,33 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="page displaying the goals achieved">
-    <meta name="author" content="George Wafula">
+{% extends 'base.html' %}
 
-    <title>Shopping Cart</title>
-	
-	<!-- CSS --> 
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  </head>
-
-  <body>
-    <div id="wrapper">
-      <nav class="navbar navbar-inverse navbar-fixed-top">  
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand"><i class="fa fa-shopping-cart"></i> Shopping Cart </a>
-		  </div>
-             
-      </nav>
-
+{% block body %}
     
       <div style="padding: 45px 45px 0px 45px;">
         <div class="row">
@@ -38,62 +11,8 @@
 			</div>
           </div>
        
-		  <a href="/newshoppinglist"><div class="col-lg-3">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-folder-open fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">
-                    <p class="announcement-text">New Shopping List</p>
-                  </div>
-                </div>
-              </div>
-              </div>
-		   </div></a>
-		  <a href="/fullList"><div class="col-lg-3">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-file-text fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">                    
-                    <p class="announcement-text"> My Current Lists </p>
-                  </div>
-                </div>
-              </div>
-              </div>
-          </div></a>
-          <a href="/dashboard"><div class="col-lg-3">
-            <div class="panel panel-warning">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-home fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">
-                    <p class="announcement-text"> Home </p>
-                  </div>
-                </div>
-              </div>
-              </div>
-          </div></a>
-		  <a href="/deletelist"><div class="col-lg-3">
-            <div class="panel panel-danger">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <i class="fa fa-trash-o fa-5x"></i>
-                  </div>
-                  <div class="col-xs-6 text-right">                    
-                    <p class="announcement-text">Delete a List</p>
-                  </div>
-                </div>
-              </div>
-              </div>
-       </div></a> 
+		  {% include 'includes/_menu4.html' %}
+
 	    </div><!-- /.row -->
         <div class="row">
 			<div class="col-md-9 col-lg-offset-1">  
@@ -115,7 +34,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>                                       
-				</tbody>          
+								</tbody>          
                               </table>
                             </div>
 		        </div>
@@ -124,10 +43,7 @@
         </div><!-- /.row -->
 			
    	  </div><!-- /#page-wrapper -->
-    </div><!-- /#wrapper -->
-
-   </body>
-</html>
+ {% endblock %}   
 
                     
 						
