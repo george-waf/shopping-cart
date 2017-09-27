@@ -1,27 +1,32 @@
-users=[]
-shopping_list=[]
+users = []
+shopping_list = []
+
+
+from datetime import datetime
+
+
 class User(object):
-    
-    def __init__(self,firstname,lastname,username,email,password):
-        
-        self.first_name=firstname
-        self.last_name=lastname
-        self.username=username
-        self.email=email
-        self.password=password
+
+    def __init__(self, firstname, lastname, username, email, password):
+
+        self.firstname = firstname
+        self.lastname = lastname
+        self.username = username
+        self.email = email
+        self.password = password
+
 
 class Shoppinglist(object):
-    def __init__(self,shoppinglist,description,items,status,dateadded):
-        
-        self.shoppinglist=shoppinglist
-        self.description=description
-        self.items=items
-        self.status='new'
-        self.dateadded=dateadded
-        
-class Shoppinglistitems(Shoppinglist):
-    def _init__(self,name,status='new'):
+
+    def __init__(self, shoppinglist, description, items, status='new', dateadded='datetime.now()'):
+        #self.listid = random.randrange(1, 1000, 1)
         self.shoppinglist = shoppinglist
-        self.status = status        
-        
-        
+        self.description = description
+        self.items = items
+        self.status = 'new'
+        self.dateadded = datetime.now().strftime('%Y-%m-%d')
+
+        shopping_list.append(self)
+
+    def delete_list(self, listid):
+        shopping_list.remove(self)
