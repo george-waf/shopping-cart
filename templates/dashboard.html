@@ -36,12 +36,17 @@
                                         </tr>
                                     </thead>
                                     <tbody> 
-{% for x in shopping_list %}
- <li class="list-group-item">
-  {{self.shoppinglist}}
- </li>
-
-  {% endfor %}                                     
+                          {% for item in  list_items %}
+                            <tr>
+                              
+                              <td>{{ item.shoppinglist }}</td>
+                                
+                              <td>{{ item.status }}</td> 
+                              
+                              <td>{{ item.dateadded }}</td>                        
+                              </tr>
+                              {% endfor %}   
+                                    
 								</tbody>          
                               </table>
                             </div>

@@ -13,7 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    
-	
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
  </head>
  
  <body>
@@ -28,7 +29,7 @@
 		   	<h4><p><b>Register</b> to start your experience <i class="fa fa-smile-o fa-2x "></i>... </p> </h4>
 	     </div>
 	     <div class="col-lg-4 col-lg-offset-2" style="background-color:black; padding-bottom: 20px;color: #fff">
-			<form action="/register" method="POST"> 
+			<form action="/register" method="POST" class="registerForm"> 
 			<br/>
 			<i class="fa fa-user-plus fa-5x text-center" style="padding-left: 150px"></i>
 			<br/>
@@ -50,11 +51,11 @@
 			  </div>
 			   <div class="form-group">
 				<label>Password</label>
-				<input name="password" type="password" class="form-control"  placeholder="Enter Password...">
+				<input name="password" id="password" type="password" class="form-control"  placeholder="Enter Password...">
 			  </div>
 			   <div class="form-group">
 				<label>Repeat Password</label>
-				<input name="password" type="password" class="form-control"  placeholder="Repeat Password...">
+				<input name="password" id="password" type="password" class="form-control"  placeholder="Repeat Password...">
 			  </div>
 			  <div>
 			  <br/>
@@ -69,3 +70,81 @@
      </div>
 	</body>
 </html>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.registerForm').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	firstname: { 
+        		validators: {
+                    notEmpty: {
+                        message: 'The firstname is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z']+$/,
+                        message: 'The firstname can only consist of alphabets, aposrophies are allowed' 
+                    }
+                }
+                    },
+            lastname: {
+                validators: {
+                    notEmpty: {
+                        message: 'The lastname is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z']+$/,
+                        message: 'The lastname can only consist of alphabets, aposrophies are allowed' 
+                    }}},        
+            username: {
+                message: 'The username is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required and cannot be empty'
+                    },
+                    stringLength: {
+                        min: 5,
+                        max: 30,
+                        message: 'The username must be more than 5 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'The email is required and cannot be empty'
+                    },
+                    email: {
+                        message: 'Please enter a valid email'
+                    }
+                }
+            },
+           password: {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and cannot be empty'
+                    },
+                    
+                    stringLength: {
+                        min: 5,
+                        message: 'The Password must be more than 5 characters long'
+                    
+                                       
+                }}
+            }
+        
+                    
+                }
+            
+        
+    });
+});
+</script>
