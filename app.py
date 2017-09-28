@@ -74,9 +74,31 @@ def editlist():
         for item in shopping_list:
             if item.listid == listid:
                 shopping_list.remove(item)
-
                 return render_template("fullList.html", list_items=shopping_list)
 
+    if request.method == 'POST' and request.form.get('update'):
+        item_edit = None
+        listid = int(request.form.get('shoppinglist_id'))
+
+        for item in shopping_list:
+            if item.listid == listid:
+                item.shoppinglist = request.form.get('shoppinglist')
+                item.description = request.form.get('description')
+                item.items = request.form.get('items')
+                item.status = request.form.get('status')
+                return render_template("fullList.html", list_items=shopping_list)
+
+    if request.method == 'POST':
+        shoppinglist = request.form['shoppinglist']
+        description = request.form['description']
+        items = request.form['items']
+        status = request.form['status']
+        dateadded = request.form['dateadded']
+        slist = Shoppinglist(shoppinglist, description,
+                             items, status, dateadded)
+        shopping_list.append(slist)
+        return render_template("fullList.html", list_items=shopping_list)   
+    return render_template("editlist.html", item=item_edit)             
         
 @app.route('/logout')
 def logout():
