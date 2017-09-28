@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+      <div style="padding: 45px 45px 0px 45px;">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h1><i class="fa fa-file-text"></i><small> All My Shopping Lists</small></h1>          
+            <div class="alert alert-success alert-dismissable" align="center">
+             My Shopping Lists <i class="fa fa-smile-o fa-1x "></i> ! 
+			      </div>
+          </div>
+       
+		  {% include 'includes/_menu3.html' %}
+           
+	      </div><!-- /.row -->
+        <div class="row">
+			  <div class="col-md-10 col-lg-offset-1">  
+	       <div id="welcome" class="panel panel-success">
+			   <div class="panel-heading">
+				 <h3 class="panel-title">My Shopping Lists </h3>
+			   </div>
+			   
+			    <div class="panel-body">
+                            <div >
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th width="13%" hidden="TRUE">ID </th>
+                                            <th width="17%">Shopping List Name</th>
+                                            <th width="13%">Description</th>
+                                            <th width="13%">Status</th>
+                                            <th width="13%">Items</th>
+                                            <th width="13%">Date added </th>
+                                            
+											                      <th width="20%">Action </th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>  
+                          {% for item in  list_items %}
+                            <tr>
+                            <form action="/editlist" method="POST">
+                              <td  hidden="TRUE">{{ item.listid }}</td>
+                              <td>{{ item.shoppinglist }}</td>
+                              <td>{{ item.description }}</td>  
+                              <td>{{ item.status }}</td> 
+                              <td>{{ item.items }}</td> 
+                              <td>{{ item.dateadded }}</td>                        
+                              <td>
+ <input type="text" name="shoppinglist_id" value={{ item.listid }} hidden="TRUE">
+ <button type="submit" name="edit" class="btn btn-sm btn-success" value="edit">Edit</button>
+ <button type="submit" name="delete" class="btn btn-sm btn-danger" value="delete">Delete</button>
+
+                            </td>
+                            
+                          </form>
+
+                            </tr>                                      
+                          {% endfor %}                                     
+								                  </tbody>          
+                              </table>
+                            </div>
+		        </div>
+		 	    </div>
+		      </div>
+          </div><!-- /.row -->
+			
+   	  </div><!-- /#page-wrapper -->
+
+      <script>
+
+ {% endblock %}  
+                    
+						
+					
+	

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="login page">
+    <meta name="author" content="George Wafula">
+	
+	<title>Shopping Cart</title>
+
+	<!-- CSS --> 
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+   
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+</head>
+ </head>
+ 
+ <body>
+ 
+	<!-- Login Section -->
+	
+	  <div class="container">
+	  	
+		<div class="row" style="padding-top: 60px ">
+		 <div class="col-lg-6">
+		 <i class="fa fa-shopping-cart fa-5x text-center"></i>
+		   <h2><b>Shopping Cart</b></h2>
+		   	<p>Shopping cart is a shopping list application that bridges the challenge of keeping track of shopping items which is a need for many individuals,
+			most people plan on what to shop on but unfortunately fail to remember the items whenever they shop </p> 
+			<p> This has happend to most of us, right...?</p>
+			<p>This innovative shopping list application allows users to record and share things they want to spend money on, keeping track of their shopping lists.</p>
+			
+			<p><b>Register</b> to start your experience or <b>login</b> to continue... </p> 
+		 </div>
+		 <div class="col-lg-4 col-lg-offset-2" style="background-color:black; padding-bottom: 20px;color: #fff">
+			<form action="/" method="POST" class="registerForm"> 
+			<br/>
+			<i class="fa fa-user fa-5x " style="padding-left: 150px"></i>
+			<br/>
+			<div class="form-group">
+			    <label>Username</label>
+				<input name="username" type="text" class="form-control" placeholder="Enter Username...">
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<input name="password" type="password" class="form-control" placeholder="Enter Password...">
+			</div>
+			<div>
+			<br/>
+			   <button type="submit" name="login" class="btn btn-block btn-success">LOGIN</button></br>
+			   <a href="/register" class="btn btn-block btn-success">REGISTER</a>
+			</div>
+			</form>
+		 </div><!-- /.col-lg-4 -->
+		</div><!-- /.row -->	
+	  </div><!-- /.container -->
+	
+
+
+ </body>
+</html>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.registerForm').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                message: 'The username is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required and cannot be empty'
+                    },
+                    stringLength: {
+                        min: 5,
+                        max: 30,
+                        message: 'The username must be more than 5 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and cannot be empty'
+                    },
+                    password: {
+                        message: 'The input is not a valid password'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

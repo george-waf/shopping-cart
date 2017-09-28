@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="homepage right after successful login ">
+    <meta name="author" content="George Wafula">
+
+    <title>Shopping Cart</title>
+
+	<!-- CSS --> 
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+
+  <body>
+      <div> 
+      <nav class="navbar navbar-inverse navbar-fixed-top">  
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"><i class="fa fa-shopping-cart"></i> Shopping Cart </a>
+		     <button style="text-align: left;"><a href="/logout" name="logout" class="btn btn-large btn-danger">Logout</a></button>
+         </div>
+      </nav>
+      {% block body %}
+      {% endblock %}
+    </div>
+  </body>
+  </html>
