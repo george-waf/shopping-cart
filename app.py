@@ -1,14 +1,11 @@
 from models.model import *
 from flask import Flask, render_template, redirect, request, url_for, session
 
-
-shopping_list = []
-
 app = Flask(__name__)
+
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
-
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST','GET'])
 def index():
 
     if request.method == 'POST':
@@ -16,17 +13,12 @@ def index():
         password = request.form['password']
 
         for user in users:
-            if username == user.username:
-                if password == user.password:
-                    session['logged_in'] = True
-                    session['id'] = username
-
+            if (username == user.username) and (password == user.password):
+                session['logged_in'] = True
+                session['id'] = username
                 return redirect(url_for('dashboard'))
-            else:
-                if username or password:
-                    return redirect(url_for('/'))
-    return render_template("index.html")
 
+    return render_template("index.html")
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -41,55 +33,54 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html')
 
-
 @app.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
     return render_template('dashboard.html', list_items=shopping_list)
 
-
-@app.route('/newshoppinglist', methods=['POST', 'GET'])
+@app.route('/newshoppinglist', methods=['POST','GET'])
 def newshoppinglist():
 
     if request.method == 'POST':
-
-        #listid = request.form['listid']
         shoppinglist = request.form['shoppinglist']
         description = request.form['description']
         items = request.form['items']
-        status = request.form['status']
-        dateadded = request.form['dateadded']
+        status = ['status']
+        dateadded = ['dateadded']
         slist = Shoppinglist(shoppinglist, description,
                              items, status, dateadded)
         shopping_list.append(slist)
-        return render_template("fullList.html", list_items=shopping_list)
+        return redirect(url_for('fullList'))
     return render_template("newshoppinglist.html")
 
-
-@app.route('/fullList')
+@app.route('/fullList', methods=['POST','GET'])
 def fullList():
-
     return render_template('fullList.html', list_items=shopping_list)
-
 
 @app.route('/editlist', methods=['POST', 'GET'])
 def editlist():
-    if request.method == 'GET':
-        #listid = request.form['listid']
-        shoppinglist = request.form['shoppinglist']
-        description = request.form['description']
-        items = request.form['items']
-        status = request.form['status']
-        dateadded = request.form['dateadded']
-        slist = Shoppinglist(shoppinglist, description,
-                             items, status, dateadded)
-        shopping_list.append(slist)
-        return render_template("fullList.html", list_items=shopping_list)
-    return render_template("editlist.html")
+    
+    if request.method == 'POST' and request.form.get('edit'):
+        item_edit = None
+        listid = int(request.form.get('shoppinglist_id'))
 
+        for item in shopping_list:
+            if item.listid == listid:
+                item_edit = item
+                return render_template("editlist.html", item=item_edit)
 
+    if request.method == 'POST' and request.form.get('delete'):
+        listid = int(request.form.get('shoppinglist_id'))
+
+        for item in shopping_list:
+            if item.listid == listid:
+                shopping_list.remove(item)
+
+                return render_template("fullList.html", list_items=shopping_list)
+
+        
 @app.route('/logout')
 def logout():
-   # session.pop('logged_in', None)
+    session.clear()
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
