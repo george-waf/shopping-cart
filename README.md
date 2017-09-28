@@ -28,4 +28,4 @@ The application has various pages as highlighted below
 |/newshoppinglist | new shopping list page | page that allows a user to add a new shopping list |
 |/editlist | edit shopping list page | page that allows a user to edit a selected shopping list |
 |/deletelist | delete shopping list page | page that allows a user to delete a selected shopping list |
-|/fullList | full shopping list page | page that displays all the shopping lists created by a user |
+|/fullList | full shopping list page | page that displays all the shopping lists created by a user  |
