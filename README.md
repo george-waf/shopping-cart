@@ -9,7 +9,15 @@ This is Shopping Cart version 1.O and most functionalities are still being worke
 * [Shopping Cart](https://shopping-listapp.herokuapp.com/)
 
 ## Running the application
-To launch the application run 
+* Clone the repo
+```
+$ git clone https://github.com/george-waf/shopping-cart.git
+```
+* Install the required packages:
+```
+$ pip install -r requirements.txt
+```
+* launch the application run 
 ```
 $python app.py
 ``` 
