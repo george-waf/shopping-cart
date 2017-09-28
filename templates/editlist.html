@@ -23,34 +23,32 @@
           <h3 class="panel-title">New Shopping List </h3>
          </div>
          <div class="panel-body">
-          <form action="/newshoppinglist" method="GET">
-          <div class="form-group">
-            <label>Shopping List Name</label>
-          <input name="shoppinglist" type="text" class="form-control">
+          <form action="/editlist" method="POST">
+            <div class="form-group">
+            
+          <input type="text" name="shoppinglist_id" value={{ item.listid }} hidden="TRUE">
           </div>
           <div class="form-group">
-            <label>Description</label>
-          <textarea name="description" rows="4" class="form-control"></textarea>
+            <label>Shopping List Name</label>
+          <input name="shoppinglist" type="text" class="form-control" value= {{ item.shoppinglist}}>
+          </div>
+           <div class="form-group">
+            <label>Shopping Description</label>
+          <input name="description" type="text" class="form-control" value= {{ item.description}}>
           </div>
           <div class="form-group">
             <label>Items</label>
-          <input name="items" type="text" class="form-control" placeholder="Add item...">
+          <input name="items" type="text" class="form-control" value= {{ item.items}}>
           </div>
+          
           <div class="form-group">
             <label>Status</label>
-          <input name="status" type="text" class="form-control" value="New" readonly>
+          <input name="status" type="text" class="form-control" value="Updated" readonly>
           </div>
-            {% for item in  list_items %}
-                            {{ item.listid }}
-                            {{ item.shoppinglist }}
-                            {{ item.description }}
-                             {{ item.status }} 
-                              {{ item.items }}
-                              {{ item.dateadded }}
-           {% endfor %}
+            
           <div>
           <br/>
-          <button type="submit" name="register" class="btn btn-large btn-success">CREATE</button><br/>
+          <button type="submit" name="update" value="update" class="btn btn-large btn-success">Update</button><br/>
           </div>
         </form>           
          </div>
