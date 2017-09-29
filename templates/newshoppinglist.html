@@ -21,7 +21,7 @@
 				  <h3 class="panel-title">New Shopping List </h3>
 			   </div>
 			   <div class="panel-body">
-			    <form action="" method="POST">
+			    <form action="" method="POST" class="newlist">
 				  <div class="form-group">
 				    <label>Shopping List Name</label>
 					<input name="shoppinglist" type="text" class="form-control" placeholder="Shopping List Name...">
@@ -45,5 +45,54 @@
         </div><!-- /.row -->
 			
    	  </div><!-- /#page-wrapper -->
-   
+   <script type="text/javascript">
+$(document).ready(function() {
+    $('.newlist').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	shoppinglist: { 
+        		validators: {
+                    notEmpty: {
+                        message: 'Shopping list name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z '0-9]+$/,
+                        message: 'The Shopping list name can only consist of alphabets, aposrophies and/or numbers' 
+                    }
+                }
+                    },
+            description: {
+                validators: {
+                    notEmpty: {
+                        message: 'Description is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z '0-9]+$/,
+                        message: 'The description can only consist of alphabets, aposrophies and/or numbers' 
+                    }}},        
+            items: {
+                message: 'Enter Items',
+                validators: {
+                    notEmpty: {
+                        message: 'items required and cannot be empty'
+                    },
+                   
+                    
+                }
+            },
+            
+          
+        
+                    
+                }
+            
+        
+    });
+});
+</script>
 {% endblock %}  
