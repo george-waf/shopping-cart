@@ -1,9 +1,19 @@
 from models.model import *
 from flask import Flask, render_template, redirect, request, url_for, session
+from functools import wraps
 
 app = Flask(__name__)
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in'in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('index'))
+    return wrap
 
 @app.route('/', methods=['POST','GET'])
 def index():
@@ -15,9 +25,9 @@ def index():
         for user in users:
             if (username == user.username) and (password == user.password):
                 session['logged_in'] = True
-                session['id'] = username
+                session['id'] = user.id
                 return redirect(url_for('dashboard'))
-
+                    
     return render_template("index.html")
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -34,10 +44,12 @@ def register():
     return render_template('register.html')
 
 @app.route('/dashboard', methods=['POST', 'GET'])
+@login_required
 def dashboard():
     return render_template('dashboard.html', list_items=shopping_list)
 
 @app.route('/newshoppinglist', methods=['POST','GET'])
+@login_required
 def newshoppinglist():
 
     if request.method == 'POST':
@@ -48,15 +60,18 @@ def newshoppinglist():
         dateadded = ['dateadded']
         slist = Shoppinglist(shoppinglist, description,
                              items, status, dateadded)
+        
         shopping_list.append(slist)
         return redirect(url_for('fullList'))
     return render_template("newshoppinglist.html")
 
 @app.route('/fullList', methods=['POST','GET'])
+@login_required
 def fullList():
     return render_template('fullList.html', list_items=shopping_list)
 
 @app.route('/editlist', methods=['POST', 'GET'])
+@login_required
 def editlist():
     
     if request.method == 'POST' and request.form.get('edit'):
@@ -101,6 +116,7 @@ def editlist():
     return render_template("editlist.html", item=item_edit)             
         
 @app.route('/logout')
+@login_required
 def logout():
     session.clear()
     return redirect(url_for('index'))
