@@ -17,7 +17,7 @@ $ git clone https://github.com/george-waf/shopping-cart.git
 ```
 $ pip install -r requirements.txt
 ```
-* launch the application run 
+* launch the application 
 ```
 $python app.py
 ``` 
