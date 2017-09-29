@@ -5,13 +5,12 @@ python:
   - "3.0"
   - "3.2"
 
-sudo: required
-
 before_script:
   - pip install -r requirements.txt
+  - pip install nose
 
 script:
-  - python test.py
+  - nosetests --with coverage
 
 after_success :
   -  coveralls
